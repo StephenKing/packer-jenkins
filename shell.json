@@ -1,0 +1,41 @@
+{
+  "variables": {
+    "_comment": "codename and version are used as tags and to find the source image",
+    "ubuntu_codename": "trusty",
+    "ubuntu_version": "14.04",
+    "vpc_id": "vpc-fa7aa19d",
+    "subnet_id": "subnet-f62bf591"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "instance_type": "t2.small",
+    "ssh_username": "ubuntu",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "*ubuntu-{{ user `ubuntu_codename` }}-{{ user `ubuntu_version` }}-amd64-server-*",
+        "root-device-type": "ebs"
+      },
+      "owners": ["099720109477"],
+      "most_recent": true
+    },
+    "vpc_id": "{{ user `vpc_id` }}",
+    "subnet_id": "{{ user `subnet_id` }}",
+    "snapshot_tags": {
+      "Name": "packer workshop {{isotime \"20060102-150405\"}}"
+    },
+    "ami_name": "packer-workshop-{{isotime \"20060102-150405\"}}",
+    "ami_description": "First iteration",
+    "tags": {
+      "Name": "Packer Worlshop {{isotime \"20060102-150405\"}}",
+      "Ubuntu version": "{{ user `ubuntu_version` }} ({{ user `ubuntu_codename` }})",
+      "Build date": "{{isotime}}"
+    }
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": ["sudo touch /root/hello-emnify.txt"]
+    }
+  ]
+}
