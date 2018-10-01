@@ -8,6 +8,11 @@ pipeline {
         }
     }
     stages {
+        stage('Validate') {
+            steps {
+                sh "packer validate $packer_file"
+            }
+        }
         stage('Build') {
             steps {
                 sh "packer build $packer_file -var branch=$BRANCH_NAME"
