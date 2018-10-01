@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'hashicorp/packer:1.3.1'
-            label 'docker'
+            label 'terraform' // just because this has EC2 API permissins
         }
     }
     stages {
