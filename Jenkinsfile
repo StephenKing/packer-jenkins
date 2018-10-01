@@ -1,3 +1,5 @@
+def packer_file = "shell.json"
+
 pipeline {
     agent {
         docker {
@@ -8,7 +10,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "packer build shell.json"
+                sh "packer build $packer_file -var branch=$BRANCH_NAME"
             }
         }
     }

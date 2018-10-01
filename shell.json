@@ -1,6 +1,7 @@
 {
   "variables": {
     "_comment": "codename and version are used as tags and to find the source image",
+    "branch": "",
     "ubuntu_codename": "trusty",
     "ubuntu_version": "14.04",
     "vpc_id": "vpc-fa7aa19d",
@@ -29,6 +30,7 @@
     "tags": {
       "Name": "Packer Worlshop {{isotime \"20060102-150405\"}}",
       "Ubuntu version": "{{ user `ubuntu_version` }} ({{ user `ubuntu_codename` }})",
+      "Branch": "{{ user `branch` }}",
       "Build date": "{{isotime}}"
     }
   }],
