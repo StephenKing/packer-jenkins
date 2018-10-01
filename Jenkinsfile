@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "packer build $packer_file -var branch=$BRANCH_NAME"
+                sh "packer build -var branch=$BRANCH_NAME $packer_file"
             }
         }
     }
