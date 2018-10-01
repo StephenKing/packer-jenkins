@@ -23,12 +23,12 @@
     "vpc_id": "{{ user `vpc_id` }}",
     "subnet_id": "{{ user `subnet_id` }}",
     "snapshot_tags": {
-      "Name": "packer workshop {{isotime \"20060102-150405\"}}"
+      "Name": "jenkins-agent-docker {{isotime \"20060102-150405\"}}"
     },
-    "ami_name": "packer-workshop-{{isotime \"20060102-150405\"}}",
+    "ami_name": "jenkins-agent-docker-{{ user `branch` }}-{{isotime \"20060102-150405\"}}",
     "ami_description": "First iteration",
     "tags": {
-      "Name": "Packer Worlshop {{isotime \"20060102-150405\"}}",
+      "Name": "Jenkins Agent Docker {{isotime \"20060102-150405\"}}",
       "Ubuntu version": "{{ user `ubuntu_version` }} ({{ user `ubuntu_codename` }})",
       "Branch": "{{ user `branch` }}",
       "Build date": "{{isotime}}"
